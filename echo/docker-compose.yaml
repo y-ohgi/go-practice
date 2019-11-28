@@ -10,3 +10,16 @@ services:
     command: realize start --run --no-config
     ports:
       - 1323:1323
+    environment:
+      - DATABASE_HOST=db
+
+  db:
+    image: mysql:5.7
+    # volumes:
+    #   - ./mysql:/var/lib/mysql
+    ports:
+      - 3306:3306
+    environment:
+      - MYSQL_DATABASE=echodb
+      - MYSQL_ALLOW_EMPTY_PASSWORD=yes
+    command: mysqld --character-set-server=utf8 --collation-server=utf8_unicode_ci
